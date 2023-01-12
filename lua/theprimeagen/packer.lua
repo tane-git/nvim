@@ -7,26 +7,40 @@ return require('packer').startup(function(use)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 
+    --* FuzzyFinder
 	use {
 	  'nvim-telescope/telescope.nvim', tag = '0.1.0',
 	-- or                            , branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim'} }
 	}
 
+    --* <Themes>
 	use({
 	    'rose-pine/neovim',
 	    as = 'rose-pine',
-	    config = function()
-		vim.cmd('colorscheme rose-pine')
-	    end
 	})
+    use({
+        'navarasu/onedark.nvim',
+        as = 'onedark',
+    })
+    use({
+        'Mofiqul/vscode.nvim',
+        as = 'darkplus'
+    })
+    use({
+        'catppuccin/nvim',
+        as = 'catppuccin'
+    })
+    -- </Themes>
 
+    --* Other
   	use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'})
 	use('nvim-treesitter/playground')
 	use('theprimeagen/harpoon')
 	use('mbbill/undotree')
 	use('tpope/vim-fugitive')
 
+    --* LSP
 	use {
 		'VonHeikemen/lsp-zero.nvim',
 		requires = {
@@ -48,5 +62,24 @@ return require('packer').startup(function(use)
 			{'rafamadriz/friendly-snippets'},
 		 }
 	}
+
+    --* Comment stuff
+    use 'numToStr/Comment.nvim'
+
+    --* AI
+    use("github/copilot.vim")
+    use({
+      "jackMort/ChatGPT.nvim",
+        config = function()
+          require("chatgpt").setup({
+            -- optional configuration
+          })
+        end,
+        requires = {
+          "MunifTanjim/nui.nvim",
+          "nvim-lua/plenary.nvim",
+          "nvim-telescope/telescope.nvim"
+        }
+    })
 
 end)

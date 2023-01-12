@@ -15,7 +15,7 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 
 --* wrapping
-vim.opt.wrap = false
+vim.opt.wrap = true
 
 --* Use undo tree instead of vim backups
 vim.opt.swapfile = false
@@ -38,4 +38,4 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 --* color column
-vim.opt.colorcolumn = "80"
+-- vim.opt.colorcolumn = "80"
