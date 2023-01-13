@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>sf", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>sf", vim.cmd.Ex, { desc = 'see files' })
 
 --* Moves Visual Selection blocks (if statement is just there for demo of auto indenting)
 if true then
