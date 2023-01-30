@@ -6,7 +6,7 @@ function Theme(color)
     }
     -- note that color does not have to be in themes array unless you want to set it as default
 
-   local default = themes[3]
+   local default = themes[2]
 
 	vim.cmd.colorscheme(color or default)
 
