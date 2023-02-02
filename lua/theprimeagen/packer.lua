@@ -14,7 +14,7 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
 	}
 
-    --* <Themes>
+--     * <Themes>
 	use({
 	    'rose-pine/neovim',
 	    as = 'rose-pine',
@@ -31,7 +31,7 @@ return require('packer').startup(function(use)
         'catppuccin/nvim',
         as = 'catppuccin'
     })
-    -- </Themes>
+  --  </Themes>
 
     --* Other
   	use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'})
