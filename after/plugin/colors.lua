@@ -1,11 +1,21 @@
 function Catppucin()
+    local background = vim.api.nvim_get_option("background")
+
+    local theme = nil
+    if background == "light" then
+        theme = "latte"
+    else
+        theme = "mocha"
+    end
+
     require("catppuccin").setup({
-        flavour = "mocha",
+        flavour = theme,
+        -- flavour = "mocha",
         -- flavour = "latte",
-        background = {
-            light = "latte",
-            dark = "mocha",
-        },
+        -- background = {
+        --     light = "latte",
+        --     dark = "mocha",
+        -- },
         transparent_background = true
     })
 end

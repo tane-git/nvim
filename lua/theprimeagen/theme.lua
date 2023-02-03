@@ -1,18 +1,28 @@
+local function IsLightTheme()
+    local filePath = "C:/Users/t.wilson/.IsLightTheme.txt"
+    local file = io.open(filePath, "r")
+
+    if file == nil then
+        return false
+    end
+
+    local contents = file:read("*all")
+    contents = tonumber(contents)
+
+    file:close()
+
+    if contents == 1 then
+        return true
+    end
+
+    return false
+end
+
 function Sync_OS_Theme()
-    print("Syncing with OS...")
 
-  -- Retrieve the OS theme
-  local file = io.popen("powershell.exe -Command \"Get-ItemProperty -Path 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize' | Select-Object -ExpandProperty AppsUseLightTheme\"")
+    local output = IsLightTheme()
 
-  local output = file:read("*all")
-
-  file:close()
-
-  -- Trim the leading and trailing whitespaces
-  output = output:gsub("^%s*(.-)%s*$", "%1")
-  --local output = "1"
-
-  if output == "1" then
+  if output then
     vim.api.nvim_set_option("background", "light")
   else
     vim.api.nvim_set_option("background", "dark")
