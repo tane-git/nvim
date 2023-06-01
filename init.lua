@@ -2,20 +2,57 @@
 vim.g.mapleader = " "
 
 -- <LazyNeoVim>
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
+	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+	if not vim.loop.fs_stat(lazypath) then
+	  vim.fn.system({
+	    "git",
+	    "clone",
+	    "--filter=blob:none",
+	    "https://github.com/folke/lazy.nvim.git",
+	    "--branch=stable", -- latest stable release
+	    lazypath,
+	  })
+	end
+	vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup(plugins, opts)
 -- </LazyNeoVim>
 
+
+local plugins = {
+	{
+	  "nvim-tree/nvim-tree.lua",
+	  version = "*",
+	  dependencies = {
+	    "nvim-tree/nvim-web-devicons",
+	  },
+	  config = function()
+	    require("nvim-tree").setup {
+		renderer = {
+			icons = {
+				  show = {
+					    file = false,
+					    folder = false,
+					    folder_arrow = true,
+					    git = true,
+					    modified = true,
+				  }
+			}
+		}
+	    }
+	  end,
+	}
+}
+
+	require("lazy").setup(plugins, opts)
+
+
+-- <KeyBindings>
 vim.api.nvim_set_keymap('n', '<leader>sf', ':Ex<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>st', ':NvimTreeToggle<CR>', {noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>sT', ':NvimTreeFindFile<CR>', {noremap = true })
+-- </KeyBindings>
+
+-- From ThePrimeagen:
+-- next greatest remap ever : asbjornHaland
+vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
