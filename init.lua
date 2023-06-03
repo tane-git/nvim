@@ -40,10 +40,22 @@ local plugins = {
 		}
 	    }
 	  end,
+	},
+
+        {
+		    "williamboman/mason.nvim",
+		    build = ":MasonUpdate" -- :MasonUpdate updates registry contents
+	},
+
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate"
 	}
 }
 
-	require("lazy").setup(plugins, opts)
+require("lazy").setup(plugins, opts)
+
+require("mason").setup()
 
 
 -- <KeyBindings>
@@ -51,6 +63,12 @@ vim.api.nvim_set_keymap('n', '<leader>sf', ':Ex<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>st', ':NvimTreeToggle<CR>', {noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>sT', ':NvimTreeFindFile<CR>', {noremap = true })
 -- </KeyBindings>
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    vim.keymap.set('n', 'gh', vim.lsp.buf.hover, { buffer = args.buf })
+  end,
+})
 
 -- From ThePrimeagen:
 -- next greatest remap ever : asbjornHaland
