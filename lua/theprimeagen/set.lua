@@ -24,3 +24,13 @@ vim.opt.termguicolors = true
 
 -- fast update
 vim.opt.updatetime = 50
+
+-- diagnostics
+vim.diagnostic.config({
+    virtual_text = false,
+})
+
+vim.api.nvim_set_keymap(
+  'n', 'gy', ':lua vim.diagnostic.open_float()<CR>', 
+  { noremap = true, silent = true }
+)
