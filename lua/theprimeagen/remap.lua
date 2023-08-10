@@ -1,13 +1,13 @@
 -- ~~ GENERAL ~~
 vim.g.mapleader = " "
 
--- dont press Q?
-vim.keymap.set("n", "Q", "<nop>")
-
 
 -- ~~ IDE NAVIGATION ~~
 
 vim.keymap.set("n", "<leader>sl", vim.cmd.Ex)
+
+-- edit vim config
+vim.api.nvim_set_keymap('n', '<Leader>ve', ':e ~/.config/nvim/init.lua<CR>', { noremap = true, silent = true })
 
 
 -- ~~ FILE NAVIGATION ~~
@@ -75,4 +75,8 @@ vim.keymap.set("n", "<leader>rf", vim.lsp.buf.format)
 
 -- TMUX
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+
+-- dont press Q?
+-- vim.keymap.set("n", "Q", "<nop>")
+
 
