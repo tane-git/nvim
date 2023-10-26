@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/home/tane_wilson/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
+  ["darkplus.nvim"] = {
+    loaded = true,
+    path = "/home/tane_wilson/.local/share/nvim/site/pack/packer/start/darkplus.nvim",
+    url = "https://github.com/lunarvim/darkplus.nvim"
+  },
   harpoon = {
     loaded = true,
     path = "/home/tane_wilson/.local/share/nvim/site/pack/packer/start/harpoon",

@@ -11,9 +11,10 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  -- COLORSCHEME
+  -- COLORSCHEMES
   use 'rose-pine/neovim'
   use 'rebelot/kanagawa.nvim'
+  use 'lunarvim/darkplus.nvim'
 
   use {
 	  'nvim-treesitter/nvim-treesitter',
