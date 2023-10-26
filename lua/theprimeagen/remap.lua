@@ -79,4 +79,5 @@ vim.keymap.set("n", "<leader>rf", vim.lsp.buf.format)
 -- dont press Q?
 -- vim.keymap.set("n", "Q", "<nop>")
 
+vim.keymap.set('t', '<C-Space>', '<C-\\><C-n>', { noremap = true, silent = true })
 
