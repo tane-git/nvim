@@ -9,6 +9,8 @@ vim.keymap.set("n", "<leader>sl", vim.cmd.Ex)
 -- edit vim config
 vim.api.nvim_set_keymap('n', '<Leader>ve', ':e ~/.config/nvim/init.lua<CR>', { noremap = true, silent = true })
 
+vim.api.nvim_set_keymap('n', 'gd', '<C-]>', { noremap = true, silent = true })
+
 
 -- ~~ FILE NAVIGATION ~~
 
