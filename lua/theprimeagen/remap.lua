@@ -4,7 +4,7 @@ vim.g.mapleader = " "
 
 -- ~~ IDE NAVIGATION ~~
 
-vim.keymap.set("n", "<leader>sl", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>sf", vim.cmd.Ex)
 
 -- edit vim config
 vim.api.nvim_set_keymap('n', '<Leader>ve', ':e ~/.config/nvim/init.lua<CR>', { noremap = true, silent = true })

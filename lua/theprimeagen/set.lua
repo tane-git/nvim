@@ -16,7 +16,6 @@ vim.opt.wrap = false
 -- undo tree
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 -- good colors
@@ -34,3 +33,13 @@ vim.api.nvim_set_keymap(
   'n', 'gy', ':lua vim.diagnostic.open_float()<CR>', 
   { noremap = true, silent = true }
 )
+
+-- vim.api.nvim_set_keymap(
+-- v  'n', 'gd', ':lua vim.lsp.buf.defintion()<CR>', 
+-- v  { noremap = true, silent = true }
+-- v)
+
+-- vvim.api.nvim_set_keymap(
+-- v  'n', 'gr', ':lua vim.lsp.buf.references()<CR>', 
+-- v  { noremap = true, silent = true }
+-- v)
