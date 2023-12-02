@@ -1,3 +1,6 @@
+require("set") -- local file
+require("remap") -- local file
+
 -- bootstrap Lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -46,9 +49,6 @@ local plugins = {
 
 require("lazy").setup(plugins)
 
-require("set") -- local file
-require("remap") -- local file
-
 vim.cmd([[colorscheme modus]])
 
 -- LSP
@@ -69,3 +69,4 @@ require('mason-lspconfig').setup({
 
 local lua_opts = lsp_zero.nvim_lua_ls()
 require('lspconfig').lua_ls.setup(lua_opts)
+
