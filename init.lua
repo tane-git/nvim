@@ -16,7 +16,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-    { "miikanissi/modus-themes.nvim", priority = 1000 },
+    -- { "miikanissi/modus-themes.nvim", priority = 1000 },
 
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
@@ -55,7 +55,7 @@ local plugins = {
 
 require("lazy").setup(plugins)
 
-vim.cmd([[colorscheme modus]])
+-- vim.cmd([[colorscheme modus]])
 
 -- LSP
 local lsp_zero = require('lsp-zero')
