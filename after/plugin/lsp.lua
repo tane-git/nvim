@@ -12,70 +12,65 @@ lsp_zero.on_attach(function(_, bufnr)
     vim.keymap.set("n", "ge", vim.diagnostic.goto_next, opts)
     vim.keymap.set("n", "gE", vim.diagnostic.goto_prev, opts)
 
-    local function goto_next_symbol()
+    local function get_flattened_symbols(symbols)
+        local flattened_symbols = {}
+
+        local function flatten_symbols(symbols)
+            for _, symbol in ipairs(symbols) do
+                table.insert(flattened_symbols, symbol)
+                if symbol.children then
+                    flatten_symbols(symbol.children)
+                end
+            end
+        end
+
+        flatten_symbols(symbols)
+
+        return flattened_symbols
+    end
+
+    local function goto_symbol(direction)
         local params = vim.lsp.util.make_position_params()
         local result = vim.lsp.buf_request_sync(0, "textDocument/documentSymbol", params)
         if result then
             local symbols = result[1].result
             local cursor_position = vim.api.nvim_win_get_cursor(0)
-            local all_symbols = {}
+            local target_symbol = nil
 
-            local function collect_symbols(symbols)
-                for _, symbol in ipairs(symbols) do
-                    table.insert(all_symbols, symbol)
-                    if symbol.children then
-                        collect_symbols(symbol.children)
+            local flattened_symbols = get_flattened_symbols(symbols)
+
+            if direction == "next" then
+                for _, symbol in ipairs(flattened_symbols) do
+                    if symbol.range.start.line > cursor_position[1] then
+                        target_symbol = symbol
+                        break
+                    end
+                end
+            elseif direction == "prev" then
+                for i = #flattened_symbols, 1, -1 do
+                    local symbol = flattened_symbols[i]
+                    if symbol.range.start.line < cursor_position[1] then
+                        target_symbol = symbol
+                        break
                     end
                 end
             end
 
-            collect_symbols(symbols)
-
-            table.sort(all_symbols, function(a, b)
-                return a.range.start.line < b.range.start.line
-            end)
-
-            for i, symbol in ipairs(all_symbols) do
-                if symbol.range.start.line > cursor_position[1] then
-                    vim.api.nvim_win_set_cursor(0, { symbol.range.start.line + 1, symbol.range.start.character })
-                    return
-                end
+            if target_symbol then
+                vim.api.nvim_win_set_cursor(0, { target_symbol.range.start.line + 1, target_symbol.range.start.character })
             end
         end
+    end
+
+    local function goto_next_symbol()
+        goto_symbol("next")
     end
 
     local function goto_prev_symbol()
-        local params = vim.lsp.util.make_position_params()
-        local result = vim.lsp.buf_request_sync(0, "textDocument/documentSymbol", params)
-        if result then
-            local symbols = result[1].result
-            local cursor_position = vim.api.nvim_win_get_cursor(0)
-            local all_symbols = {}
-
-            local function collect_symbols(symbols)
-                for _, symbol in ipairs(symbols) do
-                    table.insert(all_symbols, symbol)
-                    if symbol.children then
-                        collect_symbols(symbol.children)
-                    end
-                end
-            end
-
-            collect_symbols(symbols)
-
-            table.sort(all_symbols, function(a, b)
-                return a.range.start.line < b.range.start.line
-            end)
-
-            for i = #all_symbols, 1, -1 do
-                local symbol = all_symbols[i]
-                if symbol.range.start.line < cursor_position[1] then
-                    vim.api.nvim_win_set_cursor(0, { symbol.range.start.line + 1, symbol.range.start.character })
-                    return
-                end
-            end
-        end
+        goto_symbol("prev")
     end
+
+
     vim.keymap.set("n", "gm", goto_next_symbol, opts)
     vim.keymap.set("n", "gM", goto_prev_symbol, opts)
 end)
