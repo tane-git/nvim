@@ -17,6 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
     -- { "miikanissi/modus-themes.nvim", priority = 1000 },
+    { "rose-pine/neovim", name = "rose-pine" },
 
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
@@ -26,25 +27,11 @@ local plugins = {
     {'williamboman/mason-lspconfig.nvim'},
 
     -- LSP
-    {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v3.x',
-        lazy = true,
-        config = false,
-    },
-    {
-        'neovim/nvim-lspconfig',
-        dependencies = {
-            {'hrsh7th/cmp-nvim-lsp'},
-        }
-    },
-    -- Autocompletion
-    {
-        'hrsh7th/nvim-cmp',
-        dependencies = {
-            {'L3MON4D3/LuaSnip'}
-        },
-    },
+    {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
+    {'neovim/nvim-lspconfig'},
+    {'hrsh7th/cmp-nvim-lsp'},
+    {'hrsh7th/nvim-cmp'},
+    {'L3MON4D3/LuaSnip'},
 
     {
         'nvim-telescope/telescope.nvim',
@@ -57,22 +44,18 @@ require("lazy").setup(plugins)
 
 -- vim.cmd([[colorscheme modus]])
 
--- LSP
-local lsp_zero = require('lsp-zero')
+-- Copy and pasted from github/tree-sitter
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "rust" },
 
-lsp_zero.on_attach(function(_, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  lsp_zero.default_keymaps({buffer = bufnr})
-end)
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
 
-require('mason').setup({})
-require('mason-lspconfig').setup({
-  handlers = {
-    lsp_zero.default_setup,
+  -- Automatically install missing parsers when entering buffer
+  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+  auto_install = true,
+
+  highlight = {
+    enable = true,
   },
-})
-
-local lua_opts = lsp_zero.nvim_lua_ls()
-require('lspconfig').lua_ls.setup(lua_opts)
-
+}
