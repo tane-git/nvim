@@ -12,15 +12,21 @@ lsp_zero.on_attach(function(_, bufnr)
   vim.keymap.set("n", "ge", vim.diagnostic.goto_next, opts)
   vim.keymap.set("n", "gE", vim.diagnostic.goto_prev, opts)
 
-  local function copy_symbols_to_clipboard()
+    local function copy_symbols_to_clipboard()
         local params = vim.lsp.util.make_position_params()
         local result = vim.lsp.buf_request_sync(0, "textDocument/documentSymbol", params)
         if result then
             local symbols = result[1].result
             local symbol_names = {}
-            for _, symbol in ipairs(symbols) do
-                table.insert(symbol_names, symbol.name)
+            local function collect_symbols(symbols)
+                for _, symbol in ipairs(symbols) do
+                    table.insert(symbol_names, symbol.name)
+                    if symbol.children then
+                        collect_symbols(symbol.children)
+                    end
+                end
             end
+            collect_symbols(symbols)
             local clipboard_text = table.concat(symbol_names, ", ")
             vim.fn.setreg("+", clipboard_text)
             print("Copied symbol names to clipboard")
@@ -28,7 +34,6 @@ lsp_zero.on_attach(function(_, bufnr)
             print("Failed to retrieve symbols")
         end
     end
-
     vim.keymap.set("n", "<leader>rs", copy_symbols_to_clipboard, opts)
 end)
 
