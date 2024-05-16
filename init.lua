@@ -1,4 +1,10 @@
 require("set") -- local file
+vim.keymap.set('n', '<C-j>', '<C-d>zz', { noremap = true, silent = true })
+vim.keymap.set('i', '<C-j>', '<C-d>zz', { noremap = true, silent = true })
+vim.keymap.set('v', '<C-j>', '<C-d>zz', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-k>', '<C-u>zz', { noremap = true, silent = true })
+vim.keymap.set('i', '<C-k>', '<C-u>zz', { noremap = true, silent = true })
+vim.keymap.set('v', '<C-k>', '<C-u>zz', { noremap = true, silent = true })
 require("remap") -- local file
 
 -- bootstrap Lazy.nvim

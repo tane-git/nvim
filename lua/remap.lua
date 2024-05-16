@@ -13,8 +13,10 @@ vim.api.nvim_set_keymap('n', '<Leader>ve', ':e ~/.config/nvim/init.lua<CR>', { n
 -- ~~ FILE NAVIGATION ~~
 vim.keymap.set('n', '<C-j>', '<C-d>zz', { noremap = true, silent = true })
 vim.keymap.set('i', '<C-j>', '<C-d>zz', { noremap = true, silent = true })
+vim.keymap.set('v', '<C-j>', '<C-d>zz', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-k>', '<C-u>zz', { noremap = true, silent = true })
 vim.keymap.set('i', '<C-k>', '<C-u>zz', { noremap = true, silent = true })
+vim.keymap.set('v', '<C-k>', '<C-u>zz', { noremap = true, silent = true })
 
 -- Swap { and } (which are under the j/k keys on a symbols layer)
 vim.keymap.set({'n', 'v'}, '{', '}', { noremap = true, silent = true })
