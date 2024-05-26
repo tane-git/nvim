@@ -9,6 +9,8 @@ lsp_zero.on_attach(function(_, bufnr)
     vim.keymap.set("n", "ge", vim.diagnostic.goto_next, opts)
     vim.keymap.set("n", "gE", vim.diagnostic.goto_prev, opts)
 
+    vim.keymap.set("n", "<leader>rf", ":LspZeroFormat<CR>", opts)
+
     local function get_flattened_symbols(symbols)
         local flattened_symbols = {}
 
@@ -55,7 +57,8 @@ lsp_zero.on_attach(function(_, bufnr)
             end
 
             if target_symbol then
-                vim.api.nvim_win_set_cursor(0, { target_symbol.range.start.line + 1, target_symbol.range.start.character })
+                vim.api.nvim_win_set_cursor(0,
+                    { target_symbol.range.start.line + 1, target_symbol.range.start.character })
             end
         end
     end
@@ -81,4 +84,3 @@ require('mason-lspconfig').setup({
 
 local lua_opts = lsp_zero.nvim_lua_ls()
 require('lspconfig').lua_ls.setup(lua_opts)
-

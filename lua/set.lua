@@ -34,12 +34,5 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true }
 )
 
--- vim.api.nvim_set_keymap(
--- v  'n', 'gd', ':lua vim.lsp.buf.defintion()<CR>', 
--- v  { noremap = true, silent = true }
--- v)
-
--- vvim.api.nvim_set_keymap(
--- v  'n', 'gr', ':lua vim.lsp.buf.references()<CR>', 
--- v  { noremap = true, silent = true }
--- v)
+vim.keymap.set("n", "<leader>ve", ":edit ~/.config/nvim/init.lua<CR>")
+vim.keymap.set("n", "<leader>vr", ":so %<CR>")
