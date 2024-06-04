@@ -8,6 +8,8 @@ lsp_zero.on_attach(function(_, bufnr)
     vim.keymap.set("n", "<leader>rr", vim.lsp.buf.rename, opts)
     vim.keymap.set("n", "ge", vim.diagnostic.goto_next, opts)
     vim.keymap.set("n", "gE", vim.diagnostic.goto_prev, opts)
+    vim.keymap.set("n", "gc", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("v", "gc", vim.lsp.buf.code_action, opts)
 
     vim.keymap.set("n", "<leader>rf", ":LspZeroFormat<CR>", opts)
 
