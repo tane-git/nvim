@@ -55,7 +55,6 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- ~~ RUN SHIT ~~
 vim.keymap.set("n", "<leader>rf", vim.lsp.buf.format)
 
-
 -- ~~ EXAMPLES ~~
 
 -- vim.keymap.set("n", "<leader>vwm", function()
