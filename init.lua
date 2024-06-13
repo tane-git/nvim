@@ -1,6 +1,7 @@
 require("set") -- local file
 require("remap") -- local file
 require("window_commands") -- local file
+require("buffer_commands") -- local file
 
 -- bootstrap Lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
