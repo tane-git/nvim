@@ -3,6 +3,8 @@ require("remap") -- local file
 require("window_commands") -- local file
 require("buffer_commands") -- local file
 
+require("my_first_plugin.my_first_plugin")
+
 -- bootstrap Lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -41,7 +43,11 @@ local plugins = {
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
 
-    "tpope/vim-fugitive",
+    -- "tpope/vim-fugitive",
+    {
+        dir = "~/github/tpope/vim-fugitive",
+        lazy = false,
+    },
 
     "nvim-tree/nvim-tree.lua"
 }
