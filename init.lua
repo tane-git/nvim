@@ -41,7 +41,9 @@ local plugins = {
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
 
-    "tpope/vim-fugitive"
+    "tpope/vim-fugitive",
+
+    "nvim-tree/nvim-tree.lua"
 }
 
 require("lazy").setup(plugins)
