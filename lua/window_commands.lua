@@ -8,7 +8,7 @@ local mappings = {
     ['<leader>wl']  = winCmds.right,
 
     -- probably dont need as can just navigate with basic movements above
-    -- ['<leader>wW']  = winCmds.go_previous,
+    ['<leader>wp']  = winCmds.go_previous,
     -- ['<leader$wp']  = winCmds.go_previous_window,
     -- ['<leader>wb']  = winCmds.go_bottom,
     -- ['<leader>wt']  = winCmds.go_top,
@@ -42,8 +42,8 @@ local mappings = {
     ['<leader>wo']  = winCmds.close_all_but_current,
 
     -- Preview
-    ['<leader>wp']  = winCmds.show_tag_preview,
-    ['<leader>wP']  = winCmds.go_preview,
+    ['gp']  = winCmds.show_tag_preview,
+    ['gP']  = winCmds.go_preview,
     ['<leader>wz']  = winCmds.close_preview,
 
     -- Splitting

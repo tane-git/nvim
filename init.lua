@@ -1,41 +1,41 @@
-require("set") -- local file
-require("remap") -- local file
+require("set")             -- local file
+require("remap")           -- local file
 require("window_commands") -- local file
 require("buffer_commands") -- local file
 
-require("my_first_plugin.my_first_plugin")
+-- require("my_first_plugin.my_first_plugin")
 
 -- bootstrap Lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
     -- { "miikanissi/modus-themes.nvim", priority = 1000 },
-    { "rose-pine/neovim", name = "rose-pine" },
+    { "rose-pine/neovim",                name = "rose-pine" },
 
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
     "nvim-tree/nvim-tree.lua",
 
-    {'williamboman/mason.nvim'},
-    {'williamboman/mason-lspconfig.nvim'},
+    { 'williamboman/mason.nvim' },
+    { 'williamboman/mason-lspconfig.nvim' },
 
     -- LSP
-    {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
-    {'neovim/nvim-lspconfig'},
-    {'hrsh7th/cmp-nvim-lsp'},
-    {'hrsh7th/nvim-cmp'},
-    {'L3MON4D3/LuaSnip'},
+    { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
+    { 'neovim/nvim-lspconfig' },
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'hrsh7th/nvim-cmp' },
+    { 'L3MON4D3/LuaSnip' },
 
     {
         'nvim-telescope/telescope.nvim',
@@ -44,10 +44,26 @@ local plugins = {
     },
 
     -- "tpope/vim-fugitive",
+    -- {
+    --     dir = "~/github/tpope/vim-fugitive",
+    --     lazy = false,
+    --     build = ":helptags ALL",
+    -- },
+
     {
-        dir = "~/github/tpope/vim-fugitive",
+        dir = "~/github/tane-git/nitgitvim",
         lazy = false,
+        -- build = ":helptags ALL",
     },
+
+    {
+        dir = "~/github/tane-git/nitgitvim",
+        lazy = false,
+        build = function()
+            vim.notify("Loading nitgitvim plugin...")
+        end,
+    },
+
 
     "nvim-tree/nvim-tree.lua"
 }
@@ -57,17 +73,17 @@ require("lazy").setup(plugins)
 -- vim.cmd([[colorscheme modus]])
 
 -- Copy and pasted from github/tree-sitter
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "rust" },
+require 'nvim-treesitter.configs'.setup {
+    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "rust" },
 
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
+    -- Install parsers synchronously (only applied to `ensure_installed`)
+    sync_install = false,
 
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
+    -- Automatically install missing parsers when entering buffer
+    -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+    auto_install = true,
 
-  highlight = {
-    enable = true,
-  },
+    highlight = {
+        enable = true,
+    },
 }

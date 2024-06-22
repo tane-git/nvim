@@ -4,3 +4,6 @@ local api = vim.api
 --     local output = vim.fn.system("git log")
 --     print(output)
 -- end, {})
+--
+--
+-- vim.notify("helllllooo")
