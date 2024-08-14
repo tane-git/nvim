@@ -44,6 +44,14 @@ local plugins = {
     "tpope/vim-fugitive",
 
     "nvim-tree/nvim-tree.lua",
+
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        ---@module "ibl"
+        ---@type ibl.config
+        opts = {},
+    }
 }
 
 require("lazy").setup(plugins)
