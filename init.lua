@@ -51,6 +51,10 @@ local plugins = {
         ---@module "ibl"
         ---@type ibl.config
         opts = {},
+    },
+
+    {
+        dir = "~/nvim-git-history"
     }
 }
 
