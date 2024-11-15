@@ -1,3 +1,11 @@
+require('telescope').setup({
+    pickers = {
+        find_files = {
+            hiden = true,
+            no_ignore = true
+        }
+    }
+})
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fi', builtin.git_files, {})
