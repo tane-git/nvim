@@ -41,6 +41,11 @@ require("nvim-tree").setup({
     on_attach = my_on_attach,
     -- sync_root_with_cwd = true
     -- follow = true
+    actions = {
+        open_file = {
+            resize_window = false
+        }
+    }
 })
 
 vim.keymap.set('n', '<leader>st', ':NvimTreeOpen<CR>', { noremap = true })
