@@ -55,6 +55,11 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- ~~ RUN SHIT ~~
 vim.keymap.set("n", "<leader>rf", vim.lsp.buf.format)
 
+-- ~~ Terminal ~~
+-- vim.keymap.set('t', '<C-Space>', '<C-\\><C-n>', { noremap = true, silent = true })
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
+vim.keymap.set('t', '<S-Esc>', '<Esc>', { noremap = true, silent = true })
+
 -- ~~ EXAMPLES ~~
 
 -- vim.keymap.set("n", "<leader>vwm", function()
@@ -74,6 +79,4 @@ vim.keymap.set("n", "<leader>rf", vim.lsp.buf.format)
 
 -- dont press Q?
 -- vim.keymap.set("n", "Q", "<nop>")
-
-vim.keymap.set('t', '<C-Space>', '<C-\\><C-n>', { noremap = true, silent = true })
 
