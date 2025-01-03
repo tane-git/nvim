@@ -51,7 +51,9 @@ local plugins = {
         ---@module "ibl"
         ---@type ibl.config
         opts = {},
-    }
+    },
+
+    "sindrets/diffview.nvim"
 }
 
 require("lazy").setup(plugins)
