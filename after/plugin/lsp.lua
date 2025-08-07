@@ -77,7 +77,12 @@ lsp_zero.on_attach(function(_, bufnr)
     vim.keymap.set("n", "gM", goto_prev_symbol, opts)
 end)
 
-require('mason').setup({})
+require("mason").setup({
+    registries = {
+        "github:mason-org/mason-registry",
+        "github:Crashdummyy/mason-registry",
+    },
+})
 require('mason-lspconfig').setup({
     handlers = {
         lsp_zero.default_setup,
