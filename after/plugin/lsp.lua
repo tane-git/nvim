@@ -77,6 +77,25 @@ lsp_zero.on_attach(function(_, bufnr)
     vim.keymap.set("n", "gM", goto_prev_symbol, opts)
 end)
 
+-- Show LSP messages without moving cursor
+vim.lsp.handlers["$/progress"] = function(_, result, ctx)
+    -- Still log progress but don't show notifications
+    local client = vim.lsp.get_client_by_id(ctx.client_id)
+    if client then
+        vim.notify(string.format("[%s] %s", client.name, result.value.message or ""), vim.log.levels.INFO, { title = "LSP Progress" })
+    end
+end
+
+vim.lsp.handlers["window/showMessage"] = function(_, result)
+    -- Show message without focusing notification area
+    vim.notify(result.message, vim.log.levels.INFO, { title = "LSP" })
+end
+
+vim.lsp.handlers["window/logMessage"] = function(_, result)
+    -- Log message without focusing notification area  
+    vim.notify(result.message, vim.log.levels.INFO, { title = "LSP Log" })
+end
+
 require("mason").setup({
     registries = {
         "github:mason-org/mason-registry",
@@ -91,3 +110,15 @@ require('mason-lspconfig').setup({
 
 local lua_opts = lsp_zero.nvim_lua_ls()
 require('lspconfig').lua_ls.setup(lua_opts)
+
+-- Configure csharp_ls for faster loading
+require('lspconfig').csharp_ls.setup({
+    init_options = {
+        AutomaticWorkspaceInit = true,
+    },
+    settings = {
+        csharp = {
+            solution = "RocketLab.Flame.sln", -- Specify main solution to avoid scanning
+        }
+    }
+})

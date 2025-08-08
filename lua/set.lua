@@ -36,3 +36,5 @@ vim.api.nvim_set_keymap(
 
 vim.keymap.set("n", "<leader>ve", ":edit ~/.config/nvim/init.lua<CR>")
 vim.keymap.set("n", "<leader>vr", ":so %<CR>")
+
+vim.opt.autoread = true
