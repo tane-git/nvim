@@ -115,10 +115,5 @@ require('lspconfig').lua_ls.setup(lua_opts)
 require('lspconfig').csharp_ls.setup({
     init_options = {
         AutomaticWorkspaceInit = true,
-    },
-    settings = {
-        csharp = {
-            solution = "RocketLab.Flame.sln", -- Specify main solution to avoid scanning
-        }
     }
 })
