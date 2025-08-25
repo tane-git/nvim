@@ -53,7 +53,14 @@ local plugins = {
         opts = {},
     },
 
-    "sindrets/diffview.nvim"
+    "sindrets/diffview.nvim",
+
+    {
+        'axkirillov/unified.nvim',
+        opts = {
+            -- your configuration comes here
+        }
+    }
 }
 
 require("lazy").setup(plugins)
@@ -72,6 +79,6 @@ require 'nvim-treesitter.configs'.setup {
     auto_install = true,
 
     highlight = {
-        enable = disable,
+        enable = true,
     },
 }
