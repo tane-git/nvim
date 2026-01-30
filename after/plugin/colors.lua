@@ -13,7 +13,7 @@ require("rose-pine").setup({
     styles = {
         bold = true,
         italic = false,
-        transparency = true,
+        transparency = false,
     },
 
     groups = {
@@ -66,6 +66,44 @@ require("rose-pine").setup({
 })
 
 -- vim.cmd("colorscheme rose-pine-main")
--- vim.cmd("colorscheme rose-pine-moon")
--- vim.cmd("colorscheme rose-pine-dawn")
-vim.cmd("colorscheme rose-pine")
+-- vim.cmd("colorscheme rose-pine-doesnt-exist")
+-- vim.cmd("colorscheme rose-pine")
+vim.cmd("colorscheme catppuccin")
+
+-- Git diff colors
+local green = "#a6e3a1"
+local yellow = "#f9e2af"
+local red = "#f38ba8"
+local blue = "#89b4fa"
+local dark_green = "#1e3a2e"
+local dark_yellow = "#3e3a1e"
+local dark_red = "#3e1e2e"
+local dark_blue = "#1e2a3e"
+
+-- Gitsigns highlight groups - must be AFTER colorscheme to override Catppuccin's grey colors
+-- Sign column highlights
+vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = green })
+vim.api.nvim_set_hl(0, "GitSignsChange", { fg = yellow })
+vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = red })
+vim.api.nvim_set_hl(0, "GitSignsChangedelete", { fg = red })
+vim.api.nvim_set_hl(0, "GitSignsTopdelete", { fg = red })
+vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = blue })
+
+-- Number highlighting (numhl=true)
+vim.api.nvim_set_hl(0, "GitSignsAddNr", { fg = green })
+vim.api.nvim_set_hl(0, "GitSignsChangeNr", { fg = yellow })
+vim.api.nvim_set_hl(0, "GitSignsDeleteNr", { fg = red })
+vim.api.nvim_set_hl(0, "GitSignsChangedeleteNr", { fg = red })
+vim.api.nvim_set_hl(0, "GitSignsTopdeleteNr", { fg = red })
+vim.api.nvim_set_hl(0, "GitSignsUntrackedNr", { fg = blue })
+
+-- Line highlighting (linehl=true)
+vim.api.nvim_set_hl(0, "GitSignsAddLn", { bg = dark_green })
+vim.api.nvim_set_hl(0, "GitSignsChangeLn", { bg = dark_yellow })
+vim.api.nvim_set_hl(0, "GitSignsChangedeleteLn", { bg = dark_red })
+vim.api.nvim_set_hl(0, "GitSignsUntrackedLn", { bg = dark_blue })
+
+-- Override base Diff groups that gitsigns falls back to
+vim.api.nvim_set_hl(0, "DiffAdd", { bg = dark_green })
+vim.api.nvim_set_hl(0, "DiffChange", { bg = dark_yellow })
+vim.api.nvim_set_hl(0, "DiffDelete", { bg = dark_red })

@@ -60,7 +60,20 @@ local plugins = {
         opts = {
             -- your configuration comes here
         }
-    }
+    },
+
+    {
+        "NeogitOrg/neogit",
+        dependencies = {
+            "nvim-lua/plenary.nvim",         -- required
+            "sindrets/diffview.nvim",        -- optional - Diff integration
+            "nvim-telescope/telescope.nvim", -- optional
+        }
+    },
+
+    "lewis6991/gitsigns.nvim",
+
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
 }
 
 require("lazy").setup(plugins)
@@ -79,6 +92,6 @@ require 'nvim-treesitter.configs'.setup {
     auto_install = true,
 
     highlight = {
-        enable = true,
+        enable = false,
     },
 }
