@@ -1,4 +1,4 @@
-vim.keymap.set('n', '<leader>sg', ':Git<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>sg', ':Git<CR>', { noremap = true })
 
 local git_layout = {
     git_log_win = nil,
@@ -139,4 +139,7 @@ local function setup_git_log_viewer()
     end
 end
 
-vim.keymap.set('n', '<leader>gl', setup_git_log_viewer, { noremap = true, desc = 'Git log with auto-diff' })
+vim.api.nvim_set_keymap('n', '<leader>gl', ':lua setup_git_log_viewer()<CR>', { noremap = true })
+
+-- Make the function global so it can be called from the keymap
+_G.setup_git_log_viewer = setup_git_log_viewer
