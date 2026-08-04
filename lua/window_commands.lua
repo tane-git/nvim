@@ -1,11 +1,8 @@
 local winCmds = require('defaults.window_defaults')
 
 local mappings = {
-    -- Movement
-    ['<leader>wh']  = winCmds.left,
-    ['<leader>wj']  = winCmds.down,
-    ['<leader>wk']  = winCmds.up,
-    ['<leader>wl']  = winCmds.right,
+    -- Movement is M-hjkl (see after/plugin/tmux-navigator.lua), matching
+    -- tmux's pane navigation.
 
     -- probably dont need as can just navigate with basic movements above
     -- ['<leader>wW']  = winCmds.go_previous,
